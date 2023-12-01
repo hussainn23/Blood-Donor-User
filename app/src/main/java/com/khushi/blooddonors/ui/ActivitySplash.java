@@ -12,5 +12,7 @@ public class ActivitySplash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        //almost done ab go mn commands likhn ga un ka baad mn ss le laina aur gb mn kahn tu tm ne wo lgani hain gaise ab mn lga rha ok okok 
     }
 }
