@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FCFFFD"
+    tools:context=".ui.MainActivity"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="100dp"
+    android:orientation="vertical"
+    android:gravity="">
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/bloodlogo"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your email"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#BE0E0E0E"
+        android:textSize="18dp" />
+    <EditText
+        android:id="@+id/etMail"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/box"
+        android:layout_marginTop="5dp"
+        android:textColor="#9F0909"
+
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your Password"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#BE0E0E0E"
+        android:textSize="18dp" />
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/box"
+        android:layout_marginTop="5dp"
+        android:textColor="#9F0909"
+        android:textSize="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#BE0E0E0E"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="Don't have an account? "/>
+        <TextView
+            android:id="@+id/tvSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9F0909"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="SignUp"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+
+
+</LinearLayout>

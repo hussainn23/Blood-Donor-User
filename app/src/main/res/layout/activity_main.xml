@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +8,71 @@
     android:orientation="vertical"
     android:background="#FCFFFD"
     android:gravity="center"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.MainActivity"
+    >
+
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginBottom="300dp"
+        android:src="@drawable/bloodlogo" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-250dp"
+            android:layout_marginEnd="66dp"
+            android:text="Enter your email"
+            android:textColor="#0E0E0E"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="255dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="-0dp"
+            android:layout_marginEnd="47dp"
+            android:background="@drawable/box"
+            android:textColor="#9F0909"
+
+            android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOW'S IT BRO"
-        android:textSize="40dp"/>
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="47dp"
+        android:text="Enter your password"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <EditText
+            android:layout_width="255dp"
+            android:layout_height="45dp"
+            android:background="@drawable/box"
+            android:textColor="#9A0E0E"
+            android:textSize="20dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Don't have an account? "
+        android:textSize="20dp"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/black"
+/>
+
+    <TextView
+        android:id="@+id/signup1"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:textSize="20dp"
+        android:text="Sign Up"
+        android:textColor="#971212"
+        />
+
+
 </LinearLayout>
