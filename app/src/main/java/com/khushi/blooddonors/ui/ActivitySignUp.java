@@ -2,6 +2,7 @@ package com.khushi.blooddonors.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,16 +36,26 @@ public class ActivitySignUp extends AppCompatActivity {
     private TextView etDOB;
     private Spinner spBloodGroup;
 
-  private FirebaseFirestore firestore;
-  ModelUser modelUser;
+    private FirebaseFirestore firestore;
+    String selectBloodGroup;
+    ModelUser modelUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivitySignUpBinding.inflate(getLayoutInflater());
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        firestore=FirebaseFirestore.getInstance();
+
+
+        //initliazation of firestore
+
+        firestore = FirebaseFirestore.getInstance();
+
         etDOB = findViewById(R.id.etDOB);
         spBloodGroup = findViewById(R.id.SpBloodGroup);
+
+        // Set up the Spinner with blood group options
+        setupBloodGroupSpinner();
 
 
         // Set a click listener on etDOB to show the date picker
@@ -55,71 +66,58 @@ public class ActivitySignUp extends AppCompatActivity {
             }
         });
 
-        // Set up the Spinner with blood group options
-        setupBloodGroupSpinner();
 
         binding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name=binding.etName.getText().toString();
-                String cnic=binding.etCNIC.getText().toString();
-                String dob=binding.etDOB.getText().toString();
-                String email=binding.etEmail.getText().toString();
-                String address=binding.etAddress.getText().toString();
-              //  String bloodGroup=binding.SpBloodGroup.toString();  will discuss it later spinner value can't use directly
-                String password=binding.etPassword.getText().toString();
-                String confirmPassword=binding.etConfirmPassword.getText().toString();
+                String name = binding.etName.getText().toString();
+                String cnic = binding.etCNIC.getText().toString();
+                String dob = binding.etDOB.getText().toString();
+                String email = binding.etEmail.getText().toString();
+                String address = binding.etAddress.getText().toString();
+                //  String bloodGroup=binding.SpBloodGroup.toString();  will discuss it later spinner value can't use directly
+                String password = binding.etPassword.getText().toString();
+                String confirmPassword = binding.etConfirmPassword.getText().toString();
 
                 //function to apload data user define fnction we are making to make easy code structure
+                if (name.isEmpty() || cnic.isEmpty() || dob.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || !password.equals(confirmPassword)) {
+                    Toast.makeText(ActivitySignUp.this, "Enter Valid Data Please", Toast.LENGTH_SHORT).show();
 
-                uploadData(name,cnic,dob,email,address,"A+",password,confirmPassword);
+                } else {
+                    uploadData(name, cnic, dob, email, address, "A+", password, confirmPassword);
 
+                }
 
             }
         });
-
-
-
-
-
-
-
-
-
-
 
 
     }
 
 
     private void uploadData(String name, String cnic, String dob, String email, String address, String bloodGroup, String password, String confirmPassword) {
-        
 
-        modelUser=new ModelUser(name,cnic,dob,email,address,bloodGroup,password);
-        firestore.collection("User").add(modelUser).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+
+        modelUser = new ModelUser(name, cnic, dob, email, address, selectBloodGroup, password);
+
+        firestore.collection("Users").add(modelUser).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
-                Toast.makeText(ActivitySignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ActivitySignUp.this, ActivityLogin.class));
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(ActivitySignUp.this, ActivityLogin.class));
+                    finish();
+                    Toast.makeText(ActivitySignUp.this, "saved !!!!", Toast.LENGTH_SHORT).show();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ActivitySignUp.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivitySignUp.this, "Not saved!!!!", Toast.LENGTH_SHORT).show();
             }
         });
 
 
-
-
-
     }
-
-
-
-
-
-
 
 
     private void showDatePickerDialog() {
@@ -137,6 +135,7 @@ public class ActivitySignUp extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // Update the EditText with the selected date
                         String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+
                         etDOB.setText(selectedDate);
                     }
                 },
@@ -147,9 +146,11 @@ public class ActivitySignUp extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+
     private void setupBloodGroupSpinner() {
         // Create a list of blood groups
-        List<String> bloodGroups = new ArrayList<>();
+        List<String> bloodGroups = new ArrayList<>();  /// array based implemenataion of list
+
         bloodGroups.add("A+");
         bloodGroups.add("A-");
         bloodGroups.add("B+");
@@ -168,13 +169,13 @@ public class ActivitySignUp extends AppCompatActivity {
         // Apply the adapter to the spinner
         spBloodGroup.setAdapter(adapter);
 
+
         // Set a listener to handle item selection
         spBloodGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int index, long id) {
                 // Display a toast with the selected blood group
-                String selectedBloodGroup = (String) parentView.getItemAtPosition(position);
-                Toast.makeText(ActivitySignUp.this, "Selected Blood Group: " + selectedBloodGroup, Toast.LENGTH_SHORT).show();
+                selectBloodGroup= bloodGroups.get(index);
             }
 
             @Override
@@ -184,3 +185,6 @@ public class ActivitySignUp extends AppCompatActivity {
         });
     }
 }
+
+
+

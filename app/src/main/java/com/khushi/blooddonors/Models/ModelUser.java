@@ -3,13 +3,28 @@ package com.khushi.blooddonors.Models;
 public class ModelUser {
 
 
+    //go model k variable hotay hain firebase mn usi name sy variable bntay hain  mtlb wo fields go us din bnae thi
+
     String donorName;
     String donorCNIC;
-    String donorDOB;
+    String donorDOB;  // ye naam hmny khud sy rkhy naaa
     String donorEmail;
     String donorAddress;
     String donorBloddGroup;
-    String donorPassword;
+
+
+    public ModelUser() {
+    }
+
+    public ModelUser(String donorName, String donorCNIC, String donorDOB, String donorEmail, String donorAddress, String donorBloddGroup, String donorPassword) {
+        this.donorName = donorName;
+        this.donorCNIC = donorCNIC;
+        this.donorDOB = donorDOB;
+        this.donorEmail = donorEmail;
+        this.donorAddress = donorAddress;
+        this.donorBloddGroup = donorBloddGroup;
+        this.donorPassword = donorPassword;
+    }
 
     public String getDonorName() {
         return donorName;
@@ -67,16 +82,5 @@ public class ModelUser {
         this.donorPassword = donorPassword;
     }
 
-    public ModelUser(String donorName, String donorCNIC, String donorDOB, String donorEmail, String donorAddress, String donorBloddGroup, String donorPassword) {
-        this.donorName = donorName;
-        this.donorCNIC = donorCNIC;
-        this.donorDOB = donorDOB;
-        this.donorEmail = donorEmail;
-        this.donorAddress = donorAddress;
-        this.donorBloddGroup = donorBloddGroup;
-        this.donorPassword = donorPassword;
-    }
-
-    public ModelUser() {
-    }
+    String donorPassword;
 }

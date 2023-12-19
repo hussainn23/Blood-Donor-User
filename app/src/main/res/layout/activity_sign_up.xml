@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,189 +23,165 @@
             android:layout_marginEnd="10dp"
             android:src="@drawable/bloodlogo"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:text="Enter your Name"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+
+
         <EditText
             android:id="@+id/etName"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
-            android:textColor="#9F0909"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter your CNIC"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+            android:textColor="#9F0909"
+            android:textSize="15dp"
+            android:hint="Enter text"
+            android:layout_gravity="center"
+            android:paddingStart="5dp"
+            android:textColorHint="#9F0909"
+            />
+
+
         <EditText
             android:id="@+id/etCNIC"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:hint="Enter your CNIC"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:textColor="#9F0909"
+            android:textColorHint="#9F0909"
+            android:paddingStart="5dp"
             android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter your Date of Birth"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+
         <TextView
             android:id="@+id/etDOB"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:hint="Enter your Date of Birth"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:textColor="#9F0909"
+            android:textColorHint="#9F0909"
+            android:paddingStart="5dp"
+            android:paddingTop="6dp"
             android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter your Email"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
+            android:hint="Enter your Email"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:textColorHint="#9F0909"
             android:textColor="#9F0909"
+            android:paddingStart="5dp"
             android:textSize="15dp" />
 
         <!-- Add more TextViews and EditTexts as needed -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter your Address"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+
         <EditText
             android:id="@+id/etAddress"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
+            android:hint="Enter your Address"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:textColor="#9F0909"
+            android:layout_gravity="center"
+            android:textColorHint="#9F0909"
+            android:paddingStart="5dp"
             android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select your Blood Group"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+
         <Spinner
             android:id="@+id/SpBloodGroup"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:textColor="#9F0909"
+            android:layout_gravity="center"
+            android:textColorHint="#9F0909"
             android:textSize="15dp" />
 
         <!-- Add more TextViews and EditTexts as needed -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter your Password"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
+            android:hint="Enter your Password"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/box"
             android:inputType="textPassword"
+            android:textColorHint="#9F0909"
+            android:layout_gravity="center"
             android:textColor="#9F0909"
+            android:paddingStart="5dp"
             android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm Password"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="#BE0E0E0E"
-            android:textSize="18dp" />
+
         <EditText
             android:id="@+id/etConfirmPassword"
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="37dp"
+            android:hint="Confirm Password"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/box"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:inputType="textPassword"
             android:textColor="#9F0909"
+            android:textColorHint="#9F0909"
+            android:layout_gravity="center"
+            android:paddingStart="5dp"
             android:textSize="15dp"/>
 
         <Button
             android:id="@+id/btnSignup"
-            android:layout_width="match_parent"
+            android:layout_width="120dp"
             android:layout_height="40dp"
             android:backgroundTint="#9F0909"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/shape"
+            android:layout_gravity="center"
             android:text="SignUp"/>
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:paddingBottom="18dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="197dp"
+            android:layout_marginTop="20dp"
+            android:text="Or"
+            android:textColor="#9E1010"
+            android:textSize="18dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#BE0E0E0E"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="Already have an account? "/>
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="120dp"
+            android:layout_height="39dp"
+            android:layout_marginHorizontal="30dp"
+            android:backgroundTint="#9E1010"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/shape"
+            android:layout_gravity="center"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#9F0909"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:text="Login"/>
-        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

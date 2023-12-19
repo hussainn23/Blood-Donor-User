@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- res/drawable/red_rectangle_shape.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF0000" /> <!-- Red background color -->
+    <corners android:radius="0dp" /> <!-- Set radius to 0 for a rectangle -->
+</shape>
