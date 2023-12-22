@@ -1,26 +1,94 @@
 {
   "project_info": {
-    "project_number": "1046589814112",
-    "project_id": "blood-donor-2204d",
-    "storage_bucket": "blood-donor-2204d.appspot.com"
+    "project_number": "130034658962",
+    "project_id": "lucky-doller",
+    "storage_bucket": "lucky-doller.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1046589814112:android:01582e1962974821099a05",
+        "mobilesdk_app_id": "1:130034658962:android:19a3655f9b325488d1404b",
         "android_client_info": {
-          "package_name": "com.khushi.blooddonors"
+          "package_name": "com.enfotrix.luckydoller"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "130034658962-jfhc14lrc3b1el428g54moaapc64pqlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyC40WkS3Z7T443ovwU3R7PuU5ObUpiQC5Y"
+          "current_key": "AIzaSyD4ozkgp9ljsoOGXTMZc-G275clQ7yQRXA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130034658962-jfhc14lrc3b1el428g54moaapc64pqlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130034658962:android:47bd7f67d747fd8ad1404b",
+        "android_client_info": {
+          "package_name": "com.enfotrix.luckydolleradmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130034658962-jfhc14lrc3b1el428g54moaapc64pqlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ozkgp9ljsoOGXTMZc-G275clQ7yQRXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130034658962-jfhc14lrc3b1el428g54moaapc64pqlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130034658962:android:d5aef3d69ea76febd1404b",
+        "android_client_info": {
+          "package_name": "com.khushi.blooddonors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130034658962-jfhc14lrc3b1el428g54moaapc64pqlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ozkgp9ljsoOGXTMZc-G275clQ7yQRXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130034658962-jfhc14lrc3b1el428g54moaapc64pqlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

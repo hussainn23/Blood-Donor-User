@@ -3,14 +3,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#EFEDED" /> <!-- Background color of the EditText -->
+            <solid android:color="#FFFFFF" /> <!-- Background color of the EditText -->
             <corners android:radius="8dp" /> <!-- Adjust the radius as needed -->
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#F4F4F4" /> <!-- Shadow color with alpha -->
-            <corners android:radius="8dp" /> <!-- Adjust the radius as needed -->
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="8dp" />
         </shape>
     </item>
 </layer-list>

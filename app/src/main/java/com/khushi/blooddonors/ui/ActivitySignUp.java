@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.khushi.blooddonors.Models.ModelUser;
 import com.khushi.blooddonors.R;
+import com.khushi.blooddonors.Utils;
 import com.khushi.blooddonors.databinding.ActivitySignUpBinding;
 
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class ActivitySignUp extends AppCompatActivity {
     private TextView etDOB;
     private Spinner spBloodGroup;
 
+    Utils utils;
+
     private FirebaseFirestore firestore;
     String selectBloodGroup;
     ModelUser modelUser;
@@ -45,6 +48,8 @@ public class ActivitySignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        utils=new Utils(this);
+
 
 
         //initliazation of firestore
@@ -96,29 +101,29 @@ public class ActivitySignUp extends AppCompatActivity {
 
 
     private void uploadData(String name, String cnic, String dob, String email, String address, String bloodGroup, String password, String confirmPassword) {
+        modelUser = new ModelUser(name, cnic, dob, email, address, selectBloodGroup, "Active","","",password);
+        utils.startLoadingAnimation();
 
-
-        modelUser = new ModelUser(name, cnic, dob, email, address, selectBloodGroup, password);
-
-        firestore.collection("Users").add(modelUser).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if (task.isSuccessful()) {
-                    startActivity(new Intent(ActivitySignUp.this, ActivityLogin.class));
-                    finish();
-                    Toast.makeText(ActivitySignUp.this, "saved !!!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ActivitySignUp.this, "Not saved!!!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+        firestore.collection("Donors").add(modelUser)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        String documentId = task.getResult().getId();
+                        modelUser.setDonorID(documentId);
+                        firestore.collection("Donors").document(documentId).set(modelUser)
+                                .addOnCompleteListener(updateTask -> {
+                                    if (updateTask.isSuccessful()) {
+                                        utils.endLoadingAnimation();
+                                        startActivity(new Intent(ActivitySignUp.this, ActivityLogin.class));
+                                        finish();
+                                        Toast.makeText(ActivitySignUp.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        utils.endLoadingAnimation();
+                                        Toast.makeText(ActivitySignUp.this, "Not saved!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
     }
-
 
     private void showDatePickerDialog() {
         // Get the current date

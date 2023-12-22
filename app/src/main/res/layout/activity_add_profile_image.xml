@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.ActivityAddProfileImage">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Profile Image"
+        android:textColor="@color/color_primary"
+        android:textSize="23dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="50dp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:civ_border_width="0dp"
+        android:src="@drawable/ic_launcher_background"
+        />
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Profile Image"
+        android:layout_marginTop="30dp"
+        android:textSize="19dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/color_primary"/>
+
+    <Button
+        android:id="@+id/btnAploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginTop="20dp"
+        android:textSize="19dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/color_primary"/>
+
+
+
+
+
+</LinearLayout>

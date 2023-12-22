@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#FCFFFD"
+    android:background="#11000000"
+
     tools:context=".ui.ActivityLogin"
     >
 
@@ -15,7 +16,6 @@
         android:layout_height="684dp"
         android:layout_marginTop="70dp"
         android:gravity=""
-
         android:orientation="vertical">
 
         <ImageView
@@ -23,8 +23,8 @@
             android:layout_height="170dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="13dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/bloodlogo" />
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/app_logo" />
 
 
         <EditText
@@ -39,7 +39,7 @@
             android:paddingStart="5dp"
             android:textColor="#9F0909"
             android:textColorHint="#9F0909"
-            android:textSize="15dp" />
+            android:textSize="14dp" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -54,14 +54,13 @@
             android:textColor="#9F0909"
             android:textColorHint="#9F0909"
 
-            android:textSize="15dp" />
+            android:textSize="14dp" />
 
         <Button
             android:id="@+id/btn"
             android:layout_width="120dp"
-            android:layout_height="39dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginStart="135dp"
+            android:layout_height="41dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:text="Login"
             android:backgroundTint="#9E1010"
@@ -69,11 +68,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="182dp"
             android:layout_marginTop="20dp"
             android:text="Or"
+            android:layout_gravity="center_horizontal"
             android:textColor="#9E1010"
             android:textSize="18dp" />
 
@@ -81,11 +80,10 @@
             android:id="@+id/btn1"
             android:layout_width="120dp"
             android:layout_height="39dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginStart="135dp"
             android:layout_marginTop="19dp"
              android:backgroundTint="#9E1010"
             android:text="SignUp"
+            android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
             android:textStyle="bold" />
 

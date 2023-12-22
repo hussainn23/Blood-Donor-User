@@ -3,15 +3,78 @@ package com.khushi.blooddonors.Models;
 public class ModelUser {
 
 
-    //go model k variable hotay hain firebase mn usi name sy variable bntay hain  mtlb wo fields go us din bnae thi
 
     String donorName;
     String donorCNIC;
-    String donorDOB;  // ye naam hmny khud sy rkhy naaa
+    String donorDOB;
     String donorEmail;
     String donorAddress;
-    String donorBloddGroup;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+       this.status = status;
+    }
+
+    public ModelUser(String donorName, String donorCNIC, String donorDOB, String donorEmail, String donorAddress, String donorBloddGroup, String status, String img, String donorID, String donorPassword) {
+        this.donorName = donorName;
+        this.donorCNIC = donorCNIC;
+        this.donorDOB = donorDOB;
+        this.donorEmail = donorEmail;
+        this.donorAddress = donorAddress;
+        this.donorBloddGroup = donorBloddGroup;
+        this.status = status;
+        this.img = img;
+        this.donorID = donorID;
+        this.donorPassword = donorPassword;
+    }
+
+    String donorBloddGroup;
+    String status;
+
+    String img;
+    String donorID;
+
+    public String getDonorID() {
+        return donorID;
+    }
+
+    public void setDonorID(String donorID) {
+        this.donorID = donorID;
+    }
+
+    public ModelUser(String donorName, String donorCNIC, String donorDOB, String donorEmail, String donorAddress, String donorBloddGroup, String img, String donorID, String donorPassword) {
+        this.donorName = donorName;
+        this.donorCNIC = donorCNIC;
+        this.donorDOB = donorDOB;
+        this.donorEmail = donorEmail;
+        this.donorAddress = donorAddress;
+        this.donorBloddGroup = donorBloddGroup;
+        this.img = img;
+        this.donorID = donorID;
+        this.donorPassword = donorPassword;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public ModelUser(String donorName, String donorCNIC, String donorDOB, String donorEmail, String donorAddress, String donorBloddGroup, String img, String donorPassword) {
+        this.donorName = donorName;
+        this.donorCNIC = donorCNIC;
+        this.donorDOB = donorDOB;
+        this.donorEmail = donorEmail;
+        this.donorAddress = donorAddress;
+        this.donorBloddGroup = donorBloddGroup;
+        this.img = img;
+        this.donorPassword = donorPassword;
+    }
 
     public ModelUser() {
     }
