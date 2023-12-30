@@ -2,11 +2,15 @@ package com.khushi.blooddonors.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -49,6 +53,16 @@ public class ActivitySignUp extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         utils=new Utils(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        Window window = this.getWindow();
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
+
 
 
 
@@ -126,13 +140,10 @@ public class ActivitySignUp extends AppCompatActivity {
     }
 
     private void showDatePickerDialog() {
-        // Get the current date
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
-        // Create a new DatePickerDialog and show it
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -153,7 +164,6 @@ public class ActivitySignUp extends AppCompatActivity {
 
 
     private void setupBloodGroupSpinner() {
-        // Create a list of blood groups
         List<String> bloodGroups = new ArrayList<>();  /// array based implemenataion of list
 
         bloodGroups.add("A+");
@@ -165,17 +175,11 @@ public class ActivitySignUp extends AppCompatActivity {
         bloodGroups.add("O+");
         bloodGroups.add("O-");
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bloodGroups);
-
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
         spBloodGroup.setAdapter(adapter);
 
 
-        // Set a listener to handle item selection
         spBloodGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int index, long id) {

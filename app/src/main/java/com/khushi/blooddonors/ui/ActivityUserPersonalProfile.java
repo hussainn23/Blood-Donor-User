@@ -4,16 +4,21 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.khushi.blooddonors.Models.ModelUser;
+import com.khushi.blooddonors.R;
 import com.khushi.blooddonors.SharedPrefManager;
 import com.khushi.blooddonors.Utils;
 import com.khushi.blooddonors.databinding.ActivityUserPersonalProfileBinding;
@@ -36,6 +41,16 @@ public class ActivityUserPersonalProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUserPersonalProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        Window window = this.getWindow();
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
+
 
         utils = new Utils(this);
         sharedPrefManager = new SharedPrefManager(this);

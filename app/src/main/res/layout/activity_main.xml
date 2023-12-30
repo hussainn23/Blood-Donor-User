@@ -209,8 +209,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigation_menu" />
-
-    <!-- Add an empty view to push the BottomNavigationView above the keyboard -->
     <View
         android:id="@+id/emptyView"
         android:layout_width="match_parent"

@@ -3,14 +3,21 @@ package com.khushi.blooddonors.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.khushi.blooddonors.Models.ModelUser;
 import com.khushi.blooddonors.R;
@@ -40,7 +47,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         firestore = FirebaseFirestore.getInstance();
         utils = new Utils(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        Window window = this.getWindow();
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
+
+
+        setEvent();
         sharedPrefManager = new SharedPrefManager(this);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -141,4 +159,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void setEvent() {
+
+        firestore.collection("Events").document("ZDQEAgzm44rCza017hkI")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            String event=task.getResult().getString("event");
+                            binding.tv2.setText(event);
+                        }
+                    }
+                });
+
+
+    }
+
 }

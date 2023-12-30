@@ -22,7 +22,7 @@ import com.khushi.blooddonors.databinding.ActivitySignUpBinding;
 
 public class ActivityLogin extends AppCompatActivity {
     private ActivityLoginBinding binding;
-    FirebaseFirestore firestore;
+        FirebaseFirestore firestore;
     SharedPrefManager sharedPrefManager;
     Utils utils;
 

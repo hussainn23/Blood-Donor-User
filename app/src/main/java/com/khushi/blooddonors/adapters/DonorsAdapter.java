@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.khushi.blooddonors.Models.ModelUser;
 import com.khushi.blooddonors.R;
@@ -24,8 +28,17 @@ import com.khushi.blooddonors.SharedPrefManager;
 import com.khushi.blooddonors.ui.ActivityDonorProfile;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class DonorsAdapter extends RecyclerView.Adapter<DonorsAdapter.MyViewHolder> {
 
@@ -53,11 +66,10 @@ public class DonorsAdapter extends RecyclerView.Adapter<DonorsAdapter.MyViewHold
         ModelUser donor = filteredDonorsList.get(position);
         holder.tvName.setText(donor.getDonorName());
         holder.tvBloodGroup.setText(donor.getDonorBloddGroup());
-        if (!donor.getImg().isEmpty()){
+        if (!donor.getImg().isEmpty()) {
             Picasso.get().load(donor.getImg()).into(holder.userImage);
         }
 
-        // Set the visibility of statusActiveImage based on donor's status
         if ("Inactive".equals(donor.getStatus())) {
             holder.statusActive.setVisibility(View.GONE);
             holder.statusInactive.setVisibility(View.VISIBLE);
@@ -119,7 +131,7 @@ public class DonorsAdapter extends RecyclerView.Adapter<DonorsAdapter.MyViewHold
             new Handler().postDelayed(() -> {
                 mContext.startActivity(Intent.createChooser(intent, "Send Email"));
                 showDonorStatusDialog(donor);
-            }, 0); // 0 milliseconds delay
+            }, 0);
         } else {
             Toast.makeText(mContext, "No email app found", Toast.LENGTH_SHORT).show();
         }
@@ -141,22 +153,103 @@ public class DonorsAdapter extends RecyclerView.Adapter<DonorsAdapter.MyViewHold
     }
 
     private void updateDonorStatus(ModelUser donor) {
-        // Update donor status to "Inactive" in Firebase
         firestore.collection("Donors")
                 .document(donor.getDonorID())
                 .update("status", "Inactive")
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Update donor status in SharedPreference
                         donor.setStatus("Inactive");
                         SharedPrefManager sharedPrefManager = new SharedPrefManager(mContext);
                         sharedPrefManager.saveDonor(donor);
                         notifyDataSetChanged();
+
+                        // Fetch the FCM token at runtime
+                        fetchFcmTokenAndSendNotification(donor);
+
                         Toast.makeText(mContext, "Donor status updated successfully", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(mContext, "Failed to update donor status", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void fetchFcmTokenAndSendNotification(ModelUser donor) {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        String token = task.getResult();
+                        firestore.collection("Donors")
+                                .document(donor.getDonorID())
+                                .update("donorDOB", token)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task.isSuccessful()) {
+                                    } else {
+                                        Toast.makeText(mContext, "Failed to update donor status", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        sendNotificationToUser(token);
+                    } else {
+                        Log.e("FCM_DEBUG", "Failed to get FCM token", task.getException());
+                    }
+                });
+
+    }
+
+    private void sendNotificationToUser(String fcmToken) {
+        String serverKey = "AAAAq3IgFZc:APA91bHvBiAEO4tgtt9q42JRRr4JT5OK-ou3Ds7NzdPaxA663uf-_HvUb9A8zo612oTqbloDV-jPw-fATmGDTzWskfxjMxQlEgZdLfgW9Ydk1sSzHh7CjR3bZzMMDaq1jU_lRAEZT01F";
+        String fcmEndpoint = "https://fcm.googleapis.com/fcm/send";
+
+        new Thread(() -> {
+            try {
+                // Create JSON payload for the notification
+                JSONObject json = new JSONObject();
+                json.put("to", fcmToken);
+                JSONObject notification = new JSONObject();
+                notification.put("title", "Donor Status Update");
+                notification.put("body", "Your donor status has been updated to Inactive.");
+                json.put("notification", notification);
+
+                // Send the notification to FCM server
+                OkHttpClient client = new OkHttpClient();
+                RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+                Request request = new Request.Builder()
+                        .url(fcmEndpoint)
+                        .addHeader("Authorization", "key=" + serverKey)
+                        .post(body)
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                String responseBody = response.body().string();
+                Log.d("FCM Response", responseBody);
+
+                // Check if the notification was sent successfully
+                if (response.isSuccessful()) {
+                    showSuccessToast();
+                } else {
+                    showErrorToast();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                showErrorToast();
+            }
+        }).start();
+    }
+
+    private void showSuccessToast() {
+        runOnUiThread(() -> {
+            Toast.makeText(mContext, "Notification sent successfully", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void showErrorToast() {
+        runOnUiThread(() -> {
+            Toast.makeText(mContext, "Failed to send notification", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void runOnUiThread(Runnable runnable) {
+        new Handler(Looper.getMainLooper()).post(runnable);
     }
 
     public void filterByBloodGroup(String bloodGroup) {

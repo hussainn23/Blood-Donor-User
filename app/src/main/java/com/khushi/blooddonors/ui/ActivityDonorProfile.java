@@ -3,14 +3,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.khushi.blooddonors.Models.ModelUser;
+import com.khushi.blooddonors.R;
 import com.khushi.blooddonors.SharedPrefManager;
 import com.khushi.blooddonors.Utils;
 import com.khushi.blooddonors.databinding.ActivityDonorProfileBinding;
@@ -27,6 +32,16 @@ public class ActivityDonorProfile extends AppCompatActivity {
         binding = ActivityDonorProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         utils = new Utils(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        Window window = this.getWindow();
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
+
 
         if (getIntent().hasExtra("donor")) {
             String donorJson = getIntent().getStringExtra("donor");
